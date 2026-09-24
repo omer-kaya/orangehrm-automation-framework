@@ -15,58 +15,50 @@
     </properties>
 
     <dependencies>
-        <!-- Selenium: tarayıcıyı kontrol etmek için -->
+
+        <!-- Selenium: tarayıcıyı kontrol etmek (tıklama, yazı yazma, sayfa okuma) için -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.27.0</version>
         </dependency>
-        <!-- Selenium'un Chrome'u kontrol edebilmesi için, Chrome ile "konuşabilen" ayrı bir köprü program gerekir, buna "driver" denir -->
+
+        <!-- WebDriverManager: Chrome driver'ı otomatik indirip yönetmek için -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.9.2</version>
         </dependency>
-        <!--
-        Sorun: Selenium sadece "tarayıcıyı kontrol et" diyor, ama şunlara cevap vermiyor:
 
-1- Testleri nasıl çalıştıracağız? (Hangi sırada, kaç tane, hangi gruplar halinde?)
-2- Bir test her çalışmadan önce tarayıcıyı açıp, bittikten sonra kapatmak gibi tekrarlayan işleri nasıl otomatikleştireceğiz?
-3- "Bu değer, beklediğim değere eşit mi?" diye nasıl kontrol edeceğiz (assertion)?
-4- Bir test başarısız (fail) olursa, diğer testler durmadan devam etsin mi? -->
-                <dependency>
-                    <groupId>org.testng</groupId>
-                    <artifactId>testng</artifactId>
-                    <version>7.10.2</version>
-                </dependency>
-        <!--
-                Neden İkisi Birlikte Gerekli, Sadece Biri Değil?
-                Sadece cucumber-java olsa → Gherkin cümlelerini koda bağlarız ama kim, nasıl çalıştıracak belli olmaz
-                Sadece cucumber-testng olsa → çalıştırma altyapısı olur ama Gherkin cümlelerini koda bağlayacak motor olmaz
+        <!-- TestNG: test çalıştırma, anotasyonlar (@Test, @BeforeMethod) ve assertion altyapısı -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.10.2</version>
+        </dependency>
 
-                İkisi birlikte tam bir BDD çerçevesi oluşturur.-->
+        <!-- Cucumber-java: .feature dosyasındaki Gherkin cümlelerini Java koduna (Step Definition) bağlar -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.20.1</version>
+        </dependency>
 
-                <dependency>
-                <groupId>io.cucumber</groupId>
-                <artifactId>cucumber-java</artifactId>
-                <version>7.20.1</version>
-            </dependency>
+        <!-- Cucumber-testng: Cucumber'ı TestNG runner'ı ile birlikte çalıştırmayı sağlayan köprü -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>7.20.1</version>
+        </dependency>
 
-            <dependency>
-                <groupId>io.cucumber</groupId>
-                <artifactId>cucumber-testng</artifactId>
-                <version>7.20.1</version>
-            </dependency>
-<!--Java'nın kendi başına bir veritabanına (MySQL, PostgreSQL vb.) bağlanıp sorgu çalıştırma yeteneği yoktur.
-Java sadece JDBC (Java Database Connectivity) adında genel bir kural seti/arayüz (interface) tanımlar
-— "veritabanına şöyle bağlanılır, şöyle sorgu atılır" diye bir standart belirler, ama bu standardı hangi veritabanı için nasıl uygulayacağını bilmez. -->
+        <!-- MySQL Connector/J (JDBC): Java'dan MySQL veritabanına bağlanıp sorgu çalıştırmak için -->
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <version>9.1.0</version>
         </dependency>
-<!-- İkisi ayrı paketlenmiş olsa da, pratikte hep birlikte kullanılırlar;
-core motoru çalıştırır, api sana kod yazarken kullanacağın sınıfları verir. -->
+
+        <!-- Log4j2 Core + API: test adımlarını zaman damgalı şekilde loglamak için -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
@@ -79,12 +71,13 @@ core motoru çalıştırır, api sana kod yazarken kullanacağın sınıfları v
             <version>2.24.3</version>
         </dependency>
 
+        <!-- ExtentReports: test sonuçlarını görsel, HTML tabanlı bir raporla sunmak için -->
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>5.1.2</version>
         </dependency>
 
-                    </dependencies>
+    </dependencies>
 
-                </project>
+</project>
