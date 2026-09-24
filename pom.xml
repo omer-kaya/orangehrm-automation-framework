@@ -21,19 +21,43 @@
             <artifactId>selenium-java</artifactId>
             <version>4.27.0</version>
         </dependency>
-
+        <!-- Selenium'un Chrome'u kontrol edebilmesi için, Chrome ile "konuşabilen" ayrı bir köprü program gerekir, buna "driver" denir -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.9.2</version>
         </dependency>
+        <!--
+        Sorun: Selenium sadece "tarayıcıyı kontrol et" diyor, ama şunlara cevap vermiyor:
 
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.10.2</version>
-        </dependency>
+1- Testleri nasıl çalıştıracağız? (Hangi sırada, kaç tane, hangi gruplar halinde?)
+2- Bir test her çalışmadan önce tarayıcıyı açıp, bittikten sonra kapatmak gibi tekrarlayan işleri nasıl otomatikleştireceğiz?
+3- "Bu değer, beklediğim değere eşit mi?" diye nasıl kontrol edeceğiz (assertion)?
+4- Bir test başarısız (fail) olursa, diğer testler durmadan devam etsin mi? -->
+                <dependency>
+                    <groupId>org.testng</groupId>
+                    <artifactId>testng</artifactId>
+                    <version>7.10.2</version>
+                </dependency>
+        <!--
+                Neden İkisi Birlikte Gerekli, Sadece Biri Değil?
+                Sadece cucumber-java olsa → Gherkin cümlelerini koda bağlarız ama kim, nasıl çalıştıracak belli olmaz
+                Sadece cucumber-testng olsa → çalıştırma altyapısı olur ama Gherkin cümlelerini koda bağlayacak motor olmaz
 
-    </dependencies>
+                İkisi birlikte tam bir BDD çerçevesi oluşturur.-->
 
-</project>
+                <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <version>7.20.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-testng</artifactId>
+                <version>7.20.1</version>
+            </dependency>
+
+                    </dependencies>
+
+                </project>
