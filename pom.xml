@@ -57,6 +57,14 @@
                 <artifactId>cucumber-testng</artifactId>
                 <version>7.20.1</version>
             </dependency>
+<!--Java'nın kendi başına bir veritabanına (MySQL, PostgreSQL vb.) bağlanıp sorgu çalıştırma yeteneği yoktur.
+Java sadece JDBC (Java Database Connectivity) adında genel bir kural seti/arayüz (interface) tanımlar
+— "veritabanına şöyle bağlanılır, şöyle sorgu atılır" diye bir standart belirler, ama bu standardı hangi veritabanı için nasıl uygulayacağını bilmez. -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.1.0</version>
+        </dependency>
 
                     </dependencies>
 
