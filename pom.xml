@@ -79,6 +79,12 @@ core motoru çalıştırır, api sana kod yazarken kullanacağın sınıfları v
             <version>2.24.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>5.1.2</version>
+        </dependency>
+
                     </dependencies>
 
                 </project>
