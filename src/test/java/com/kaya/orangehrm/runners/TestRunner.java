@@ -11,7 +11,8 @@ import io.cucumber.testng.CucumberOptions;
         },
         plugin = {
                 "pretty",
-                "html:target/cucumber-reports/cucumber.html"
+                "html:target/cucumber-reports/cucumber.html",
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
         },
         monochrome = true
 )

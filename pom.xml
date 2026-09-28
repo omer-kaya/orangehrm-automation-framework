@@ -78,6 +78,12 @@
             <version>5.1.2</version>
         </dependency>
 
+        <!-- Extent Cucumber Adapter: Cucumber olaylarını (senaryo, adım, sonuç) ExtentReports'a aktarır -->
+        <dependency>
+            <groupId>tech.grasshopper</groupId>
+            <artifactId>extentreports-cucumber7-adapter</artifactId>
+            <version>1.14.0</version>
+        </dependency>
     </dependencies>
 
 </project>
