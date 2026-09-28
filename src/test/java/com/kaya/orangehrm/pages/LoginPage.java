@@ -5,6 +5,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -23,8 +25,8 @@ public class LoginPage {
     // 4. CONSTRUCTOR (Yapıcı Method)
     // Bu sınıf new LoginPage() denildiğinde otomatik çalışır.
 
-    public LoginPage(){
-        this.driver= DriverManager.getDriver();
+    public LoginPage() {
+        this.driver = DriverManager.getDriver();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         logger.info("LoginPage sınıfı başlatıldı ve Driver bağlandı.");
 
@@ -48,6 +50,42 @@ public class LoginPage {
     // Dashboard header (Giriş sonrası doğrulama için)
     private By dashboardHeader = By.xpath("//h6[text()='Dashboard']");
 
+    // ==========================================
+    // ACTIONS
+    // ==========================================
 
+    public void login(String username, String password) {
+        logger.info("Giriş işlemi başlatılıyor: {}", username);
+
+        // Username alanını temizle ve yaz
+        wait.until(ExpectedConditions.visibilityOfElementLocated(usernameInput));
+        driver.findElement(usernameInput).clear();
+        driver.findElement(usernameInput).sendKeys(username);
+        logger.debug("Kullanıcı adı girildi: {}", username);
+
+        // Password alanına yaz
+        wait.until(ExpectedConditions.visibilityOfElementLocated(passwordInput));
+        driver.findElement(passwordInput).clear();
+        driver.findElement(passwordInput).sendKeys(password);
+        logger.debug("Kullanıcı şifresi girildi {} ", password);
+
+        // Login butonuna tıkla
+        wait.until(ExpectedConditions.elementToBeClickable(loginButton));
+        driver.findElement(loginButton).click();
+        logger.debug("Button tıklandı.");
+
+    }
+
+    public boolean isDashboardDisplayed(){
+        logger.info("Dashboard sayfasının açıldığı doğrulanıyor...");
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(dashboardHeader));
+            logger.info("Dashboard başlığı başarıyla görüntülendi.");
+            return true;
+        } catch (Exception e) {
+            logger.error("Dashboard başlığı görüntülenemedi! Hata: {}", e.getMessage());
+            return false;
+        }
+    }
 
 }
