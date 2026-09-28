@@ -8,25 +8,34 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
-import java.sql.Driver;
-
 public class LoginSteps {
+
     private LoginPage loginPage;
 
     @Given("kullanıcı OrangeHRM giriş sayfasındadır")
-    public void kullanıcıOrangeHRMGirişSayfasındadır() {
+    public void kullaniciOrangeHRMGirisSayfasindadir() {
         DriverManager.getDriver().get(ConfigReader.getProperty("url"));
         loginPage = new LoginPage();
     }
 
     @When("kullanıcı {string} ve {string} bilgileriyle giriş yapar")
-    public void kullanıcıVeBilgileriyleGirişYapar(String username, String password) {
+    public void kullaniciBilgileriyleGirisYapar(String username, String password) {
         loginPage.login(username, password);
     }
 
     @Then("dashboard sayfası görüntülenir")
-    public void dashboardSayfasıGörüntülenir() {
+    public void dashboardSayfasiGoruntulenir() {
         Assert.assertTrue(loginPage.isDashboardDisplayed(),
                 "Dashboard başlığı görüntülenemedi, giriş başarısız olabilir.");
+    }
+
+    @Then("{string} hata mesajı görüntülenir")
+    public void hataMesajiGoruntulenir(String beklenenMesaj) {
+        Assert.assertEquals(loginPage.getInvalidCredentialsMessage(), beklenenMesaj);
+    }
+
+    @Then("{string} uyarısı görüntülenir")
+    public void uyariGoruntulenir(String beklenenUyari) {
+        Assert.assertEquals(loginPage.getRequiredMessage(), beklenenUyari);
     }
 }
